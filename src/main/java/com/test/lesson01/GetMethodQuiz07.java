@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/lesson01/quiz07")
 public class GetMethodQuiz07 extends HttpServlet {
+	
+	// 테스트용 주석 추가
 
 //	@Override
 //	public void doGet(HttpServletRequest request
