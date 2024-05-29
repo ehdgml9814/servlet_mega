@@ -37,10 +37,22 @@ public class GetMethodQuiz08 extends HttpServlet {
 		while (iter.hasNext()) {
 			String str = iter.next();
 			if (str.contains(word)) {
-				int idx = str.indexOf(word);
-				String newStr = str.substring(0, idx) + "<b>" + str.substring(idx, idx + word.length()) + 
-						"</b>" + str.substring(idx + word.length());
-				out.print(newStr + "<br>");
+				// 1) best 단어가 여러개일 때도 사용 가능
+//				str = str.replace(word, "<b>" + word + "</b>");
+//				out.print(str + "<br>");
+				
+				// 2)
+				String[] words = str.split(word);
+				out.print(words[0] + "<b>" + word + "</b>" + words[1] + "<br>");
+				
+				// 3)
+				// str.indexOf(word); 사용
+				
+				// 나
+//				int idx = str.indexOf(word);
+//				String newStr = str.substring(0, idx) + "<b>" + str.substring(idx, idx + word.length()) + 
+//						"</b>" + str.substring(idx + word.length());
+//				out.print(newStr + "<br>");
 			}
 		}
 		out.print("</body></html>");
