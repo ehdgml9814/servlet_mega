@@ -6,20 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Quiz02_1</title>
 </head>
 <body>
 	<%
-		String select = request.getParameter("select");
-		SimpleDateFormat date = new SimpleDateFormat("yyyy년 MM월 dd일");
-		SimpleDateFormat time = new SimpleDateFormat("HH시 mm분 ss초");
+		String select = request.getParameter("type");
+		SimpleDateFormat sdf = null;
 		// out.print(select);
 		if (select.equals("time")) {
-			out.print("현재 시간은 " + time.format(new Date()) + " 입니다.");
-		} 
-		if (select.equals("date")) {
-			out.print("오늘 날짜는 " + date.format(new Date()) + " 입니다.");
+			sdf = new SimpleDateFormat("HH시 mm분 ss초");
+		} else {
+			sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 		}
+		String result = sdf.format(new Date()); 		
 	%>
+	
+	<div class="container">
+		<div class="display-4"><%= result %></div>
+	</div>
 </body>
 </html>
