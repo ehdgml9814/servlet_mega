@@ -14,30 +14,57 @@
 	<%
 		int cm = Integer.parseInt(request.getParameter("cm"));
 		String[] units = request.getParameterValues("unit");
-		List<String> list = Arrays.asList(units);
+		// List<String> list = Arrays.asList(units);
+		List<String> list = new ArrayList<>();
+		if (units != null) {
+			list = Arrays.asList(units);
+		}
 	%>
 	<div class="container">
 		<h1>길이 변환 결과</h1>
-		<b><%= cm %>cm</b>
+		<h3><%= cm %>cm</h3>
 		<hr>
-		<%
-			if (list.contains("in")) {
-				double in = cm / 2.54;
-				out.print("<b>" + in + " in</b><br>");
+		<h2>
+			<%
+				if (units != null) {
+					for (String unit : units) {
+						if (unit.equals("in")) { // inch
+							double in = 0.393701 * cm;
+							out.print(in + " in<br>");
+						} else if (unit.equals("yd")) { //yard
+							double yd = 0.010936 * cm;
+							out.print(yd + " yd<br>");
+						} else if (unit.equals("ft")) { // f
+							double ft = 0.032808 * cm;
+							out.print(ft + " ft<br>");
+						} else if (unit.equals("m")) {
+							double m = cm / 100.0;
+							out.print(m + " m<br>");
+						}
+					}
+				}
+			%>
+		</h2>
+		<%-- <%
+			if (units != null) {
+				if (list.contains("in")) {
+					double in = cm / 2.54;
+					out.print("<b>" + in + " in</b><br>");
+				}
+				if (list.contains("yd")) {
+					double yd = cm / 91.44;
+					out.print("<b>" + yd + " yd</b><br>");
+				}
+				if (list.contains("ft")) {
+					double ft = cm / 30.48;
+					out.print("<b>" + ft + " ft</b><br>");
+				}
+				if (list.contains("m")) {
+					double m = cm / 100.0;
+					out.print("<b>" + m + " m</b><br>");
+				}
 			}
-			if (list.contains("yd")) {
-				double yd = cm / 91.44;
-				out.print("<b>" + yd + " yd</b><br>");
-			}
-			if (list.contains("in")) {
-				double ft = cm / 30.48;
-				out.print("<b>" + ft + " ft</b><br>");
-			}
-			if (list.contains("m")) {
-				double m = cm / 100.0;
-				out.print("<b>" + m + " m</b><br>");
-			}
-		%>
+		%> --%>
 	</div>
 </body>
 </html>
