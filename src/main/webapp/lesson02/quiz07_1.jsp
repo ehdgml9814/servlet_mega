@@ -29,6 +29,7 @@
 	    list.add(map);
 		String menu = request.getParameter("menu");
 		String p4 = request.getParameter("point4");
+		boolean exclude = p4 != null; // 4점 이하 제외
 	%>
 	<div class="container">
 		<h1 class="text-center">검색 결과</h1>
@@ -42,14 +43,13 @@
 			</thead>
 			<tbody>
 			<%
-				for (int i = 0; i < list.size(); i++) {
-					Map<String, Object> review = list.get(i); // name, menu, point
-					if (review.get("menu").equals(menu) == false) {
-						continue;
-					}
-					if ((Double)review.get("point") <= 4 && p4 != null) {
-						continue;
-					}
+				/* for (int i = 0; i < list.size(); i++) {
+					Map<String, Object> review = list.get(i); // name, menu, point */
+				for (Map<String, Object> review : list) {
+					if (review.get("menu").equals(menu)) {
+						if ((Double)review.get("point") <= 4 && p4 != null) {
+							continue;
+						}
 			%>
 				<tr>
 					<td><%= review.get("menu") %></td>
@@ -57,6 +57,7 @@
 		      		<td><%= review.get("point") %></td>
 				</tr>
 			<%
+					}
 				}
 			%>
 			</tbody>
