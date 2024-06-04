@@ -95,7 +95,7 @@
 			<div class="d-flex">
 				<h3 class="text-success mr-4">Melong</h3>
 				<div class="input-group ml-4 mb-3">
-					<input type="text" class="form-control col-4"aria-describedby="button-addon2">
+					<input type="text" name="search" class="form-control col-4"aria-describedby="button-addon2">
 					<div class="input-group-append">
 						<button class="btn btn-info btn-outline-secondary text-light" type="button" id="button-addon2">검색</button>
 					</div>	
@@ -124,8 +124,26 @@
 		<section class="contents mt-3">
 			<h4>곡 목록</h4>
 			<table class="table text-center">
-				<thead></thead>
-				<tbody></tbody>
+				<thead>
+					<tr>
+						<th>no</th>
+						<th>제목</th>
+						<th>앨범</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%
+					for (Map<String, Object> music : musicList) {
+				%>
+					<tr>
+						<td><%= music.get("id") %></td>
+						<td><a href="/lesson02/quiz10_1.jsp?id=<%= music.get("id") %>"><%= music.get("title") %></a></td>
+						<td><%= music.get("album") %></td>
+					</tr>
+				<%
+					}
+				%>
+				</tbody>
 			</table>
 		</section>
 		<footer>
