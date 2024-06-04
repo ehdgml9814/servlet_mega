@@ -56,12 +56,12 @@ list.add(map);
 		</header>
 		<nav class="bg-danger">
 			<ul class="nav nav-fill w-100">
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=전체" class="nav-link text-light">전체</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=지상파" class="nav-link text-light">지상파</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=영화" class="nav-link text-light">영화</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=드라마" class="nav-link text-light">드라마</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=예능" class="nav-link text-light">예능</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=스포츠" class="nav-link text-light">스포츠</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp" class="nav-link text-light">전체</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=지상파" class="nav-link text-light">지상파</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=영화" class="nav-link text-light">영화</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=드라마" class="nav-link text-light">드라마</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=예능" class="nav-link text-light">예능</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=스포츠" class="nav-link text-light">스포츠</a></li>
 			</ul>
 		</nav>
 		<section class="contents">
@@ -75,7 +75,9 @@ list.add(map);
 				</thead>
 				<tbody>
 				<%
+					String category = request.getParameter("category");
 					for (Map<String, String> channel : list) {
+						if (category == null || channel.get("category").equals(category)) {
 				%>
 					<tr>
 						<td><%= channel.get("ch") %></td>
@@ -83,6 +85,7 @@ list.add(map);
 						<td><%= channel.get("category") %></td>
 					</tr>
 				<%
+						}
 					}
 				%>
 				</tbody>

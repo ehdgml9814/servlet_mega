@@ -91,63 +91,91 @@
     musicList.add(musicInfo);
 %>
 	<div class="container">
-		<header>
-			<div class="d-flex">
-				<h3 class="text-success mr-4">Melong</h3>
-				<div class="input-group ml-4 mb-3">
-					<input type="text" name="search" class="form-control col-4"aria-describedby="button-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-info btn-outline-secondary text-light" type="button" id="button-addon2">검색</button>
-					</div>	
-				</div>
+		<header class="d-flex align-items-center">
+			<div class="col-2">
+				<h3 class="text-success">Melong</h3>
 			</div>
+			<div class="col-10">
+				<form method="get" action="/lesson02/quiz10_info.jsp">
+					<div class="input-group">
+	  					<input type="text" class="form-control col-6" name="search">
+	  					<div class="input-group-append">
+	    					<button class="btn btn-info" type="submit">검색</button>
+	  					</div>
+					</div>
+				</form>
+			</div>
+			<!-- <div class="d-flex">
+				<h3 class="text-success mr-4">Melong</h3>
+				<form method="get" action="/lesson02/quiz10_info.jsp">
+					<div class="input-group ml-4 mb-3">
+						<input type="text" name="search" class="form-control col-4"aria-describedby="button-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-info btn-outline-secondary text-light" type="button" id="button-addon2">검색</button>
+						</div>	
+					</div>
+				</form>
+			</div> -->
 		</header>
 		<nav>
 			<ul class="nav nav-fill w-50">
-				<li class="nav-item"><a href="/lesson02/quiz10_1.jsp" class="nav-link text-dark"><b>멜롱차트</b></a></li>
-				<li class="nav-item"><a href="/lesson02/quiz10_1.jsp" class="nav-link text-dark"><b>최신음악</b></a></li>
-				<li class="nav-item"><a href="/lesson02/quiz10_1.jsp" class="nav-link text-dark"><b>장르음악</b></a></li>
-				<li class="nav-item"><a href="/lesson02/quiz10_1.jsp" class="nav-link text-dark"><b>멜롱DJ</b></a></li>
-				<li class="nav-item"><a href="/lesson02/quiz10_1.jsp" class="nav-link text-dark"><b>뮤직어워드</b></a></li>
+				<li class="nav-item"><a href="/lesson02/quiz10_info.jsp" class="nav-link text-dark"><b>멜롱차트</b></a></li>
+				<li class="nav-item"><a href="/lesson02/quiz10_info.jsp" class="nav-link text-dark"><b>최신음악</b></a></li>
+				<li class="nav-item"><a href="/lesson02/quiz10_info.jsp" class="nav-link text-dark"><b>장르음악</b></a></li>
+				<li class="nav-item"><a href="/lesson02/quiz10_info.jsp" class="nav-link text-dark"><b>멜롱DJ</b></a></li>
+				<li class="nav-item"><a href="/lesson02/quiz10_info.jsp" class="nav-link text-dark"><b>뮤직어워드</b></a></li>
 			</ul>
 		</nav>
-		<div class="artistInfo">
-			<span class="border border-success d-flex">
-				<img src="<%= artistInfo.get("photo") %>" alt="사진" width="150" class="m-2">
-				<div class="m-2">
-					<h2><b><%= artistInfo.get("name") %></b></h2>
-					<%= artistInfo.get("agency") %><br>
-					<%= artistInfo.get("debute") %> 데뷔
-				</div>
-			</span>
-		</div>
 		<section class="contents mt-3">
-			<h4>곡 목록</h4>
-			<table class="table text-center">
-				<thead>
-					<tr>
-						<th>no</th>
-						<th>제목</th>
-						<th>앨범</th>
-					</tr>
-				</thead>
-				<tbody>
-				<%
-					for (Map<String, Object> music : musicList) {
-				%>
-					<tr>
-						<td><%= music.get("id") %></td>
-						<td><a href="/lesson02/quiz10_1.jsp?id=<%= music.get("id") %>"><%= music.get("title") %></a></td>
-						<td><%= music.get("album") %></td>
-					</tr>
-				<%
-					}
-				%>
-				</tbody>
-			</table>
+			<div class="d-flex border border-success p-3">
+				<div class="mr-4">
+					<img src="<%= artistInfo.get("photo") %>" alt="가수 이미지" width="150">
+				</div>	
+				<div>
+					<h3 class="font-weight-bold"><%= artistInfo.get("name") %></h3>
+					<div class="font-weight-bold"><%= artistInfo.get("agency") %></div>
+					<div class="font-weight-bold"><%= artistInfo.get("debute") %></div>
+				</div>			
+			</div>
+			<%-- <div class="artistInfo">
+				<span class="border border-success d-flex">
+					<img src="<%= artistInfo.get("photo") %>" alt="사진" width="150" class="m-2">
+					<div class="m-2">
+						<h2><b><%= artistInfo.get("name") %></b></h2>
+						<%= artistInfo.get("agency") %><br>
+						<%= artistInfo.get("debute") %> 데뷔
+					</div>
+				</span>
+			</div> --%>
+			<div>
+				<h4 class="mt-3">곡 목록</h4>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>no</th>
+							<th>제목</th>
+							<th>앨범</th>
+						</tr>
+					</thead>
+					<tbody>
+					<%
+						for (Map<String, Object> music : musicList) {
+					%>
+						<tr>
+							<td><%= music.get("id") %></td>
+							<td><a href="/lesson02/quiz10_info.jsp?id=<%= music.get("id") %>"><%= music.get("title") %></a></td>
+							<td><%= music.get("album") %></td>
+						</tr>
+					<%
+						}
+					%>
+					</tbody>
+				</table>
+			</div>
 		</section>
 		<footer>
-			<small>Copyright 2021. melong All Rights Reserved.</small>
+			<hr>
+			<small class="ml-3">Copyright 2021. melong All Rights Reserved.</small>
 		</footer>
 	</div>
 </body>
