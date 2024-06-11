@@ -14,7 +14,7 @@ import com.test.common.MysqlService;
 public class AddBookmarkQuiz02 extends HttpServlet {
 
 	@Override
-	public void doGet(HttpServletRequest request
+	public void doPost(HttpServletRequest request
 			, HttpServletResponse response) throws IOException {
 		
 		// db 연결
@@ -40,6 +40,6 @@ public class AddBookmarkQuiz02 extends HttpServlet {
 		ms.disconnect();
 		
 		// 출력 페이지로 redirect
-		response.sendRedirect("/lesson03/quiz02.jsp");
+		response.sendRedirect("/lesson03/bookmark_list.jsp");
 	}
 }
